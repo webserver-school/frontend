@@ -1,5 +1,6 @@
 import styles from '../styles/Register.module.css'
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import Link from 'next/link';
 
 import {
     faUser,
@@ -46,6 +47,11 @@ function Register() {
                          <button className={styles.login_submit} type="submit">
                              <span className={styles.button_text}>Create Account</span>
                          </button>
+                         <Link href="/login">
+                         <button className={styles.signup_submit} type="submit">
+                             <span className={styles.button_text}>Back to Login</span>
+                         </button>
+                         </Link>
                     </form>
                  </div>
                  <div className={styles.shape_backgrounds}>
