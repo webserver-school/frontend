@@ -15,7 +15,7 @@ function Login() {
         e.preventDefault();
 
         let formData = new FormData(e.target);
-
+        //Fetch Api /Login : Sends with POST
         let res = await fetch(process.env.NEXT_PUBLIC_URL + '/api/Login', {
             method: "POST",
             body: JSON.stringify(
@@ -26,7 +26,7 @@ function Login() {
                 'Accept': 'application/json'
             }
         });
-
+        // Routes you back to fronpage after login succeed
         if (res.status == 200) {
             router.push('/');
         }
@@ -37,15 +37,14 @@ function Login() {
             <div className={styles.container}>
                 <div className={styles.screen}>
                     <div className={styles.content}>
+                        {/* Calls function Login() onClick */}
                         <form className={styles.login} onSubmit={submit}>
                             <div className={styles.login_field}>
-                                {/* Dont work for some reason */}
                                 <i className={styles.login_icon_one}>
                                     <FontAwesomeIcon icon={faUser}/></i>
                                 <input type="text" className={styles.login_input} name="username" placeholder="Username" required />
                             </div>
                             <div className={styles.login_field}>
-                                {/* Dont work for some reason */}
                                 <i className={styles.login_icon_one}><FontAwesomeIcon icon={faLock} /></i>
                                 <input type="password" className={styles.login_input} name="password" placeholder="Password" required />
                             </div>

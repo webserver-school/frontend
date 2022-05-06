@@ -15,7 +15,7 @@ function Register() {
         e.preventDefault();
 
         let formData = new FormData(e.target);
-
+        //Fetch Api /Register : Sends with POST
         let res = await fetch(process.env.NEXT_PUBLIC_URL + '/api/Register', {
             method: "POST",
             body: JSON.stringify(
@@ -26,7 +26,7 @@ function Register() {
                 'Accept': 'application/json'
             }
         });
-
+        // Routes you back to fronpage after account creattion succeed
         if (res.status == 200) {
             router.push('/');
         }
@@ -37,6 +37,7 @@ function Register() {
          <div className={styles.container}>
              <div className={styles.screen}>
                  <div className={styles.content}>
+                     {/* Calls function Register() onClick */}
                     <form className={styles.login} onSubmit={submit}>
                         <div className={styles.login_field}>
                              <i className={styles.login_icon_one}>
@@ -55,7 +56,7 @@ function Register() {
                              <span className={styles.button_text}>Create Account</span>
                          </button>
                          <Link href="/login">
-                         <button className={styles.signup_submit} type="submit">
+                         <button className={styles.signup_submit} type="button">
                              <span className={styles.button_text}>Back to Login</span>
                          </button>
                          </Link>
