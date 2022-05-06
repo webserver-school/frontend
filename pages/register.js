@@ -6,8 +6,11 @@ import {
     faUser,
     faLock,
 } from "@fortawesome/free-solid-svg-icons";
+import { useRouter } from 'next/router';
 
 function Register() {
+    let router = useRouter();
+
     const submit = async (e) => {
         e.preventDefault();
 
@@ -23,6 +26,10 @@ function Register() {
                 'Accept': 'application/json'
             }
         });
+
+        if (res.status == 200) {
+            router.push('/');
+        }
     }
 
     return (

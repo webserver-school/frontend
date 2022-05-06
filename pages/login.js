@@ -1,5 +1,6 @@
 import styles from '../styles/Login.module.css'
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useRouter } from 'next/router';
 
 import {
     faUser,
@@ -8,6 +9,8 @@ import {
 import Link from 'next/link';
 
 function Login() {
+    let router = useRouter();
+
     const submit = async (e) => {
         e.preventDefault();
 
@@ -23,6 +26,10 @@ function Login() {
                 'Accept': 'application/json'
             }
         });
+
+        if (res.status == 200) {
+            router.push('/');
+        }
     }
 
     return (
