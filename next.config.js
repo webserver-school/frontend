@@ -5,7 +5,19 @@ const nextConfig = {
     return [
       {
         source: '/api/:path*',
-        destination: 'http://localhost:5171/:path*',
+        destination: 'http://localhost:5171/api/:path*',
+      },
+      {
+        source: '/Login',
+        destination: 'http://localhost:5171/Login',
+      },
+      {
+        source: '/Register',
+        destination: 'http://localhost:5171/Register',
+      },
+      {
+        source: '/Logout',
+        destination: 'http://localhost:5171/Logout',
       }
     ]
   }

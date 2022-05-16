@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import styles from '../styles/index.module.css'
 
 export async function getServerSideProps(context) {
@@ -22,24 +23,18 @@ export default function Home(props) {
                 
             </div>
             <div className={styles.text_background}>
-                <h1 className={styles.main_title}>Songs <br/> Just <span className={styles.four_highlight}>4</span> You</h1>
-                <button className={styles.button_login} type="button">
-                        <span className={styles.button_text}>Get Started</span>
-                </button>
+                <h1 className={styles.main_title}>Songs <br /> Just <span className={styles.four_highlight}>4</span> You</h1>
+
+                {props.user ? (
+                    <p> Welcome {props.user.displayName} </p>
+                ) : (
+                    <Link href="/Login">
+                        <button className = {styles.button_login} type="button">
+                            <span className={styles.button_text}>Get Started</span>
+                        </button>
+                    </Link>
+                )}
             </div>
         </div>
-        
-        
-        
-        
-        /*<div>
-            <h1>Home</h1>
-
-            {props.user ? (
-                <p> Welcome { props.user.username } </p>
-            ) : (
-                <p> Welcome guest </p>
-            )}
-        </div>*/
     )
 }
