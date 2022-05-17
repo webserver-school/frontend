@@ -3,6 +3,7 @@
     min-height: 100vh;
     background-color: black;
     display: flex;
+    overflow: hidden;
 }
 .text_background{
     display:grid;
@@ -12,6 +13,7 @@
     width: 500px;
     height: 350px;
     color: white;
+    z-index: 300;
 }
 .main_title{
     font-size: 5.2rem;
@@ -28,8 +30,47 @@
     text-transform: uppercase;
     font-weight: 600;
     align-items: center;
-    width: 70%;
+    width: 60%;
     color: #fff;
     border: none;
     cursor: pointer;
+}
+#svg1{
+    position: absolute;
+    z-index: 1;
+    top: 10vh;
+    left: 10vw;
+}
+#svg2{
+    position: absolute;
+    z-index: 1;
+    top: 30vh;
+    left: 90vw;
+}
+#svg3{
+    position: absolute;
+    z-index: 1;
+    top: 20vh;
+    left: 60vw;
+}
+
+#svg5{
+    position: absolute;
+    z-index: 1;
+    bottom: 0;
+    right: 0;
+}
+#svg6{
+    position: absolute;
+    z-index: 1;
+    bottom: 0;
+    right: 0;
+}
+
+@media screen and (max-width=700px) {
+    .text_background{
+        position: absolute;
+        top: 100px;
+        left: 100px;
+    }
 }

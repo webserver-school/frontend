@@ -19,9 +19,6 @@ export async function getServerSideProps(context) {
 export default function Home(props) {
     return (
         <div className={styles.background}>
-            <div>
-                
-            </div>
             <div className={styles.text_background}>
                 <h1 className={styles.main_title}>Songs <br /> Just <span className={styles.four_highlight}>4</span> You</h1>
 
@@ -35,6 +32,12 @@ export default function Home(props) {
                     </Link>
                 )}
             </div>
+            <img src="/Polygon 6.svg" alt="icon_triangle" id={styles.svg1}></img>
+            <img src="/Polygon 6.svg" alt="icon_triangle" id={styles.svg2}></img>
+            <img src="/Polygon 6.svg" alt="icon_triangle" id={styles.svg3}></img>
+            <img src="/Polygon 6.svg" alt="icon_triangle" id={styles.svg4}></img>
+            <img src="/Polygon 2.svg" alt="icon_triangle" id={styles.svg5}></img>
+            <img src="/Polygon 3.svg" alt="icon_triangle" id={styles.svg6}></img>
         </div>
     )
 }
