@@ -1,10 +1,3 @@
-.background {
-    width: 100%;
-    min-height: 100vh;
-    background-color: black;
-    display: flex;
-    overflow: hidden;
-}
 .text_background{
     display:grid;
     position: relative;
