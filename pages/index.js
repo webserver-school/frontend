@@ -27,7 +27,7 @@ export default function Home(props) {
                         <p> Welcome {props.user.displayName} </p>
                     ) : (
                         <Link href="/Login">
-                            <button className = "bg-purple text-2xl py-4 uppercase text-white rounded-2xl mr-6" type="button">
+                            <button className = "bg-purple text-2xl py-4 uppercase text-white rounded-2xl mr-6 font-medium tracking-wide" type="button">
                                 <span>Get Started</span>
                             </button>
                         </Link>

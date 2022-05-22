@@ -11,6 +11,12 @@ module.exports = {
         black: colors.black,
         purple: "#5200FF",
         red: colors.red,
+      },  
+      keyframes: {
+        fadeIn: {
+          "0%": { opacity: 0 },
+          "100%": { opacity: 1 }
+        }
       }
     },
   },
