@@ -23,15 +23,11 @@ export default function Home(props) {
                 <div className="container flex flex-col my-auto ml-16">
                     <h1 className="text-8xl font-bold pb-10 leading-tight text-white">Songs <br /> Just <span className={styles.four_highlight}>4</span> You</h1>
 
-                    {props.user ? (
-                        <p> Welcome {props.user.displayName} </p>
-                    ) : (
-                        <Link href="/Login">
-                            <button className = "bg-purple text-2xl py-4 uppercase text-white rounded-2xl mr-6 font-medium tracking-wide" type="button">
-                                <span>Get Started</span>
-                            </button>
-                        </Link>
-                    )}
+                    <Link href={props.user ? "/list" : "/Login"}>
+                        <button className = "bg-purple text-2xl py-4 uppercase text-white rounded-2xl mr-6 font-medium tracking-wide" type="button">
+                            <span>Get Started</span>
+                        </button>
+                    </Link>
                 </div>
             </div>
             <img src="/Polygon 6.svg" alt="icon_triangle" id={styles.svg1}></img>
