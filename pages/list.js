@@ -1,5 +1,5 @@
 import { Dialog, Transition } from '@headlessui/react'
-import { Fragment, useState } from 'react'
+import { Fragment, useState, useEffect } from 'react'
 
 export async function getServerSideProps(context) {
     let res = await fetch(process.env.NEXT_PUBLIC_URL + '/api/MusicList', {
@@ -32,6 +32,69 @@ function TopThreeCard({ onClick, item, indexName }) {
                 <p className='text-gray-300 font-semibold text-lg'> {item.artists.map(e => e.name).join(', ')} </p>
             </div>
         </div>
+    );
+}
+
+function SelectedTrackModal({ track }) {
+    let [comments, setComments] = useState([]);
+
+    function addComment(trackId, e) {
+        e.preventDefault();
+    
+        let data = new FormData(e.target);
+    
+        data.append('trackId', trackId);
+    
+        fetch(process.env.NEXT_PUBLIC_URL + '/api/comments', {
+            method: 'POST',
+            body: data,
+        }).then(res => {
+            if (res.status == 200) {
+                setComments([...comments, { author_name: 'You', body: data.get('body') }]);
+            }
+        });
+    }
+
+    useEffect(async () => {
+        let commentsRes = await fetch(process.env.NEXT_PUBLIC_URL + `/api/comments?` + new URLSearchParams({ trackId: track.id }));
+
+        setComments(await commentsRes.json());
+    }, [track]);
+
+    return (
+        <>
+            <div className='flex items-center justify-between'>
+                <div className='flex items-center space-x-3'>
+                    <img src={track.album.images[0].url} className='h-16 w-16 rounded-md' />
+
+                    <div>
+                        <p className='text-white font-bold text-2xl'> {track.name} </p>
+                        <p className='text-gray-300 font-semibold text-lg'> {track.artists.map(e => e.name).join(', ')} </p>
+                    </div>
+                </div>
+
+                <a href={track.externalUrls.spotify} target="_blank">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="text-[#1DB954] h-12 w-12" viewBox="0 0 20 20" fill="currentColor">
+                        <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clipRule="evenodd" />
+                    </svg>
+                </a>
+            </div>
+
+            <form onSubmit={(...args) => addComment(track.id, ...args)} className='mt-4'>
+                <input className='w-full bg-gray-800 px-5 py-4 rounded-md text-white' placeholder="Add a comment.." name='body' />
+            </form>
+
+            <div className='mt-4 space-y-2'>
+                {comments.length ? comments.map((comment, i) => (
+                    <div className='bg-gray-600 rounded-md px-6 py-5 w-full' key={`comment-${i}`}>
+                        <p className='text-gray-300 font-bold'> { comment.author_name } </p>
+                        <p className='text-white font-bold'> { comment.body } </p>
+                    </div>
+                )) : (
+                    <p className='text-gray-300 font-bold text-center'> No comments </p>
+                ) }
+            </div>
+        </>
     );
 }
 
@@ -72,42 +135,7 @@ export default function Home(props) {
                                 leaveTo="opacity-0 scale-95"
                             >
                                 <Dialog.Panel className="w-full max-w-2xl transform overflow-hidden rounded-2xl bg-gray-700 p-6 text-left align-middle shadow-xl transition-all">
-                                    {selectedTrack && (
-                                        <>
-                                            <div className='flex items-center justify-between'>
-                                                <div className='flex items-center space-x-3'>
-                                                    <img src={selectedTrack.album.images[0].url} className='h-16 w-16 rounded-md' />
-
-                                                    <div>
-                                                        <p className='text-white font-bold text-2xl'> {selectedTrack.name} </p>
-                                                        <p className='text-gray-300 font-semibold text-lg'> {selectedTrack.artists.map(e => e.name).join(', ')} </p>
-                                                    </div>
-                                                </div>
-
-                                                <a href={selectedTrack.externalUrls.spotify} target="_blank">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" className="text-[#1DB954] h-12 w-12" viewBox="0 0 20 20" fill="currentColor">
-                                                        <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clipRule="evenodd" />
-                                                    </svg>
-                                                </a>
-                                            </div>
-
-                                            <div className='mt-4'>
-                                                <input className='w-full bg-gray-800 px-5 py-4 rounded-md text-white' placeholder="Add a comment.." />
-                                            </div>
-
-                                            <div className='mt-4 space-y-2'>
-                                                <div className='bg-gray-600 rounded-md px-6 py-5 w-full'>
-                                                    <p className='text-gray-300 font-bold'> test </p>
-                                                    <p className='text-white font-bold'> helloo </p>
-                                                </div>
-
-                                                <div className='bg-gray-600 rounded-md px-6 py-5 w-full'>
-                                                    <p className='text-gray-300 font-bold'> test </p>
-                                                    <p className='text-white font-bold'> helloo </p>
-                                                </div>
-                                            </div>
-                                        </>
-                                    )}
+                                    {selectedTrack && <SelectedTrackModal track={selectedTrack} />}
                                 </Dialog.Panel>
                             </Transition.Child>
                         </div>
