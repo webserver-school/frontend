@@ -6,7 +6,7 @@ export default function Home() {
         <div className="w-full md:h-[1520px] h-[1820px] min-h-screen bg-black text-center">
             <h1 className="w-full block font-bold text-white py-20 md:text-6xl text-5xl">Your list is ready</h1>
             <div className='w-100 lg:mx-40 mx-5 h-72 md:flex mt-5 grid'>
-                <div className='md:w-4/12 md:h-5/6 h-48 bg-purple md:mt-4 rounded-md animate-fadeIn'></div>
+                <div className='md:w-4/12 md:h-5/6 h-48 bg-purple md:mt-4 rounded-md'></div>
                 <div className='md:w-4/12 md:h-full h-48 bg-purple md:mx-5 md:my-0 my-5 rounded-md' ></div>
                 <div className='md:w-4/12 md:h-5/6 h-48 bg-purple md:mt-4 mt-0 rounded-md'></div>
             </div>
