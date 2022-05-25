@@ -28,7 +28,7 @@ export async function getServerSideProps(context) {
 
 export default function Home(props) {
     return (
-        <div className="w-full min-h-screen flex overflow-hidden bg-black">
+        <div className="w-full min-h-screen flex overflow-hidden bg-background">
             <div className="flex flex-row justify-between z-20">
                 <div className="container flex flex-col my-auto ml-16">
                     <h1 className="text-8xl font-bold pb-10 leading-tight text-white">Songs <br /> Just <span className={styles.four_highlight}>4</span> You</h1>

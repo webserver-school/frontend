@@ -63,7 +63,7 @@ function SelectedTrackModal({ track }) {
 
     return (
         <>
-            <div className='flex items-center justify-between'>
+            <div className='flex items-center justify-between '>
                 <div className='flex items-center space-x-3'>
                     <img src={track.album.images[0].url} className='h-16 w-16 rounded-md' />
 
@@ -143,7 +143,7 @@ export default function Home(props) {
                 </Dialog>
             </Transition>
 
-            <div className="w-full md:h-[1520px] h-[1820px] min-h-screen bg-black text-center">
+            <div className="w-full md:h-[1520px] h-[1820px] min-h-screen bg-background text-center">
                 <h1 className="w-full block font-bold text-white py-20 md:text-6xl text-5xl">Your list is ready</h1>
 
                 <div className='w-100 lg:mx-40 mx-5 h-72 md:flex mt-5 grid gap-4'>

@@ -11,6 +11,8 @@ module.exports = {
         black: colors.black,
         purple: "#5200FF",
         red: colors.red,
+        background: "#191919",
+        gray: colors.zinc,
       },  
       keyframes: {
         fadeIn: {
